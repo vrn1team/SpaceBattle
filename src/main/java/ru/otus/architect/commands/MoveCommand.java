@@ -12,6 +12,10 @@ public class MoveCommand implements Command {
 
     @Override
     public void execute() {
-        mobile.setPosition(mobile.getPosition().vectorAdd(mobile.getVelocity()));
+        try {
+            mobile.setPosition(mobile.getPosition().vectorAdd(mobile.getVelocity()));
+        } catch (Exception exception) {
+            throw new MoveCommandException(exception);
+        }
     }
 }

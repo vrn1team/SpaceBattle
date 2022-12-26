@@ -9,7 +9,6 @@ import ru.otus.architect.game.objects.Mobile;
 import ru.otus.architect.vector.Vector;
 import ru.otus.architect.vector.Vector2DBuilder;
 import ru.otus.architect.vector.VectorImpl;
-import ru.otus.architect.vector.VectorsDimensionException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -22,15 +21,15 @@ class MoveCommandTest {
             .y(5)
             .build();
     private final static Vector TEST_COORDINATES_2 = Vector2DBuilder.builder(DISCRETE_COUNT)
-            .x(-5)
-            .y(2)
+            .x(-7)
+            .y(3)
             .build();
 
     private final static Vector BAD_COORDINATES = new VectorImpl(-5, 2, 0);
 
     private final static Vector TEST_SUM_RESULT = Vector2DBuilder.builder(DISCRETE_COUNT)
-            .x(7)
-            .y(7)
+            .x(5)
+            .y(8)
             .build();
     @Mock
     private Mobile mobile;
@@ -57,7 +56,7 @@ class MoveCommandTest {
                 .when(mobile).setPosition(any());
 
         Command command = new MoveCommand(mobile);
-        assertThrows(RuntimeException.class, command::execute);
+        assertThrows(MoveCommandException.class, command::execute);
     }
 
     @Test
@@ -67,7 +66,7 @@ class MoveCommandTest {
 
         Command command = new MoveCommand(mobile);
 
-        assertThrows(VectorsDimensionException.class, command::execute);
+        assertThrows(MoveCommandException.class, command::execute);
     }
 
     @Test
@@ -77,7 +76,7 @@ class MoveCommandTest {
 
         Command command = new MoveCommand(mobile);
 
-        assertThrows(VectorsDimensionException.class, command::execute);
+        assertThrows(MoveCommandException.class, command::execute);
     }
 
 }

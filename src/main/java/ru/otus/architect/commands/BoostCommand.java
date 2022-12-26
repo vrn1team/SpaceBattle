@@ -12,6 +12,10 @@ public class BoostCommand implements Command {
 
     @Override
     public void execute() {
-        accelerator.setVelocity(accelerator.getVelocity().scalarAdd(accelerator.getAcceleration()));
+        try {
+            accelerator.setVelocity(accelerator.getVelocity().scalarAdd(accelerator.getAcceleration()));
+        } catch (Exception exception) {
+            throw new BoostCommandException(exception);
+        }
     }
 }

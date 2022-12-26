@@ -57,6 +57,26 @@ class BoostCommandTest {
 
         Command command = new BoostCommand(accelerator);
 
-        Assertions.assertThrows(RuntimeException.class, command::execute);
+        Assertions.assertThrows(BoostCommandException.class, command::execute);
     }
+
+    @Test
+    void boostNoVelocity() {
+        doThrow(new RuntimeException()).when(accelerator).getVelocity();
+
+        Command command = new BoostCommand(accelerator);
+
+        Assertions.assertThrows(BoostCommandException.class, command::execute);
+    }
+
+    @Test
+    void boostNoAcceleration() {
+        doThrow(new RuntimeException()).when(accelerator).getAcceleration();
+
+        Command command = new BoostCommand(accelerator);
+
+        Assertions.assertThrows(BoostCommandException.class, command::execute);
+    }
+
+
 }
