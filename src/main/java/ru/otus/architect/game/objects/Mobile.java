@@ -2,7 +2,7 @@ package ru.otus.architect.game.objects;
 
 import ru.otus.architect.vector.Vector;
 
-public interface Moveable {
+public interface Mobile {
 
     void setPosition(Vector position);
 

@@ -1,34 +1,34 @@
 package ru.otus.architect.vector;
 
-public class PolarVector2DBuilder {
+public class Vector2DBuilder {
     private final int discreteAngleCount;
     private int x;
     private int y;
 
-    public PolarVector2DBuilder(int discreteAngleCount) {
+    public Vector2DBuilder(int discreteAngleCount) {
         this.discreteAngleCount = discreteAngleCount;
     }
 
-    public static PolarVector2DBuilder builder(int discreteAngleCount) {
-        return new PolarVector2DBuilder(discreteAngleCount);
+    public static Vector2DBuilder builder(int discreteAngleCount) {
+        return new Vector2DBuilder(discreteAngleCount);
     }
 
-    public PolarVector2DBuilder x(int x) {
+    public Vector2DBuilder x(int x) {
         this.x = x;
         return this;
     }
 
-    public PolarVector2DBuilder y(int y) {
+    public Vector2DBuilder y(int y) {
         this.y = y;
         return this;
     }
 
-    public PolarVector2D build() {
+    public Vector build() {
         double radial = Math.sqrt(x*x + y*y);
         int corner;
         if(0 == x) {
             if(0 == y) {
-                throw new VectorsInitiationException("Bad coordinates");
+                return new VectorImpl(x, y);
             }
             corner = (y > 0)? discreteAngleCount/2: 3*discreteAngleCount/2;
         } else {

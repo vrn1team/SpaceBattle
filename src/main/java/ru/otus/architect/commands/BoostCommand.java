@@ -1,17 +1,17 @@
 package ru.otus.architect.commands;
 
-import ru.otus.architect.game.objects.Boostable;
+import ru.otus.architect.game.objects.Accelerator;
 
 public class BoostCommand implements Command {
 
-    private final Boostable boostable;
+    private final Accelerator accelerator;
 
-    public BoostCommand(Boostable boostable) {
-        this.boostable = boostable;
+    public BoostCommand(Accelerator accelerator) {
+        this.accelerator = accelerator;
     }
 
     @Override
     public void execute() {
-        boostable.setVelocity(boostable.getVelocity().scalarAdd(boostable.getAcceleration()));
+        accelerator.setVelocity(accelerator.getVelocity().scalarAdd(accelerator.getAcceleration()));
     }
 }

@@ -1,12 +1,13 @@
 package ru.otus.architect.commands;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.otus.architect.game.objects.Boostable;
-import ru.otus.architect.vector.PolarVector2DBuilder;
+import ru.otus.architect.game.objects.Accelerator;
 import ru.otus.architect.vector.Vector;
+import ru.otus.architect.vector.Vector2DBuilder;
 
 import static org.mockito.Mockito.*;
 
@@ -14,27 +15,48 @@ import static org.mockito.Mockito.*;
 class BoostCommandTest {
     private final static int DISCRETE_COUNT = 180;
     private final static double TEST_ACCELERATION = 13;
-    private final static Vector TEST_VELOCITY = PolarVector2DBuilder.builder(DISCRETE_COUNT)
+    private final static Vector TEST_VELOCITY = Vector2DBuilder.builder(DISCRETE_COUNT)
             .x(12)
             .y(5)
             .build();
-    private final static Vector RESULT_VELOCITY = PolarVector2DBuilder.builder(DISCRETE_COUNT)
+    private final static Vector RESULT_VELOCITY = Vector2DBuilder.builder(DISCRETE_COUNT)
             .x(24)
             .y(10)
             .build();
 
-
     @Mock
-    private Boostable boostable;
+    private Accelerator accelerator;
 
     @Test
     void execute() {
-        when(boostable.getVelocity()).thenReturn(TEST_VELOCITY);
-        when(boostable.getAcceleration()).thenReturn(TEST_ACCELERATION);
+        when(accelerator.getVelocity()).thenReturn(TEST_VELOCITY);
+        when(accelerator.getAcceleration()).thenReturn(TEST_ACCELERATION);
 
-        Command command = new BoostCommand(boostable);
+        Command command = new BoostCommand(accelerator);
         command.execute();
 
-        verify(boostable, times(1)).setVelocity(RESULT_VELOCITY);
+        verify(accelerator, times(1)).setVelocity(RESULT_VELOCITY);
+    }
+
+    @Test
+    void zeroBoost() {
+        when(accelerator.getVelocity()).thenReturn(TEST_VELOCITY);
+        when(accelerator.getAcceleration()).thenReturn(0.0);
+
+        Command command = new BoostCommand(accelerator);
+        command.execute();
+
+        verify(accelerator, times(1)).setVelocity(TEST_VELOCITY);
+    }
+
+    @Test
+    void boostImmobile() {
+        doThrow(new RuntimeException()).when(accelerator).setVelocity(any());
+        when(accelerator.getVelocity()).thenReturn(TEST_VELOCITY);
+        when(accelerator.getAcceleration()).thenReturn(0.0);
+
+        Command command = new BoostCommand(accelerator);
+
+        Assertions.assertThrows(RuntimeException.class, command::execute);
     }
 }

@@ -5,12 +5,19 @@ import java.util.List;
 
 public class PolarVector2D implements Vector {
 
+    private final static double DELTA = 0.05;
     private final static int DIMENSION = 2;
     private final int discreteAngleCount;
     private final double radial;
     private final int corner;
 
     public PolarVector2D(double radial, int corner, int discreteAngleCount) {
+        if (discreteAngleCount <= 0 ) {
+            throw new VectorsInitiationException("Bad discreteAngleCount");
+        }
+        if (radial <  - DELTA ) {
+            throw new VectorsInitiationException("Bad radial");
+        }
         this.discreteAngleCount = discreteAngleCount;
         this.radial = radial;
         this.corner = corner;
@@ -22,7 +29,7 @@ public class PolarVector2D implements Vector {
             throw new VectorsDimensionException();
         }
         List<Integer> result = addCoordinates(vector.getCoordinates());
-        return PolarVector2DBuilder.builder(discreteAngleCount).x(result.get(0)).y(result.get(1)).build();
+        return Vector2DBuilder.builder(discreteAngleCount).x(result.get(0)).y(result.get(1)).build();
     }
 
     @Override
@@ -71,16 +78,5 @@ public class PolarVector2D implements Vector {
             }
         }
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = discreteAngleCount;
-        temp = Double.doubleToLongBits(radial);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + corner;
-        return result;
     }
 }

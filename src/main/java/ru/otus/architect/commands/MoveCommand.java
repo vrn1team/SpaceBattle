@@ -1,17 +1,17 @@
 package ru.otus.architect.commands;
 
-import ru.otus.architect.game.objects.Moveable;
+import ru.otus.architect.game.objects.Mobile;
 
-public class MoveCommand implements Command{
+public class MoveCommand implements Command {
 
-    private final Moveable moveable;
+    private final Mobile mobile;
 
-    public MoveCommand(Moveable moveable) {
-        this.moveable = moveable;
+    public MoveCommand(Mobile mobile) {
+        this.mobile = mobile;
     }
 
     @Override
     public void execute() {
-        moveable.setPosition(moveable.getPosition().vectorAdd(moveable.getVelocity()));
+        mobile.setPosition(mobile.getPosition().vectorAdd(mobile.getVelocity()));
     }
 }

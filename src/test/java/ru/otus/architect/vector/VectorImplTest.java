@@ -1,13 +1,11 @@
 package ru.otus.architect.vector;
 
 import org.junit.jupiter.api.Test;
-import ru.otus.architect.vector.Vector;
-import ru.otus.architect.vector.VectorImpl;
-import ru.otus.architect.vector.VectorsDimensionException;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class VectorImplTest {
     private final static List<Integer> TEST_COORDINATES_1 = List.of(12, 5);
@@ -22,7 +20,7 @@ class VectorImplTest {
 
         List<Integer> result = vector1.vectorAdd(vector2).getCoordinates();
 
-        for(var i = 0; i < vector1.getDimension(); i++) {
+        for (var i = 0; i < vector1.getDimension(); i++) {
             assertEquals(result.get(i), TEST_SUM_RESULT.get(i));
         }
     }
@@ -41,7 +39,7 @@ class VectorImplTest {
 
         List<Integer> result = vector1.getCoordinates();
 
-        for(var i = 0; i < vector1.getDimension(); i++) {
+        for (var i = 0; i < vector1.getDimension(); i++) {
             assertEquals(result.get(i), TEST_COORDINATES_1.get(i));
         }
     }
@@ -56,7 +54,7 @@ class VectorImplTest {
 
         assertEquals(TEST_COORDINATES_1.size(), vector1.getDimension());
         List<Integer> result = vector1.getCoordinates();
-        for(var i = 0; i < vector1.getDimension(); i++) {
+        for (var i = 0; i < vector1.getDimension(); i++) {
             assertEquals(result.get(i), TEST_COORDINATES_1.get(i));
         }
     }
@@ -74,8 +72,8 @@ class VectorImplTest {
 
         List<Integer> result = vector1.scalarAdd(13).getCoordinates();
 
-        for(var i = 0; i < vector1.getDimension(); i++) {
-            assertEquals(2*TEST_COORDINATES_1.get(i), result.get(i));
+        for (var i = 0; i < vector1.getDimension(); i++) {
+            assertEquals(2 * TEST_COORDINATES_1.get(i), result.get(i));
         }
     }
 }
