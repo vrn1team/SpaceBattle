@@ -1,4 +1,4 @@
-package ru.otus.architect.server.fuel;
+package ru.otus.architect.fuel;
 
 public interface IFuelConsumer {
 
