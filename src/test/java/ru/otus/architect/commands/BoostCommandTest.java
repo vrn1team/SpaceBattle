@@ -13,7 +13,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class BoostCommandTest {
-    private final static int DISCRETE_COUNT = 180;
     private final static double TEST_ACCELERATION = 13;
     private final static Vector TEST_VELOCITY = Vector2DBuilder.builder()
             .x(12)
