@@ -1,5 +1,6 @@
 package ru.otus.architect.vector;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.architect.angle.Angle;
 import ru.otus.architect.angle.AngleImpl;
@@ -33,16 +34,19 @@ class PolarVector2DTest {
     }
 
     @Test
+    @DisplayName("радиальная координата не может быть отрицательной")
     void createByPolarCoordinatesWithBadRadial() {
         assertThrows(VectorsInitiationException.class, () -> new PolarVector2D(BAD_CORNER, TEST_ANGLE));
     }
 
     @Test
+    @DisplayName("угол не может быть задан некоректно")
     void createByPolarCoordinatesWithBadDiscreteAngleCount() {
         assertThrows(RuntimeException.class, () -> new PolarVector2D(BAD_CORNER, new AngleImpl(0, BAD_DISCRETE_COUNT)));
     }
 
     @Test
+    @DisplayName("при сложении вух векторов их размерность должна совпадать")
     void addBadDimension() {
         Vector vector1 = Vector2DBuilder.builder().x(TEST_X).y(TEST_Y).build();
         Vector badVector = new VectorImpl(BAD_TEST_COORDINATES);
@@ -51,6 +55,7 @@ class PolarVector2DTest {
     }
 
     @Test
+    @DisplayName("координаты можно сложить")
     void add() {
         Vector vector1 = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
@@ -69,6 +74,7 @@ class PolarVector2DTest {
     }
 
     @Test
+    @DisplayName("координаты можно получить")
     void getCoordinates() {
         Vector vector = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
@@ -83,6 +89,7 @@ class PolarVector2DTest {
     }
 
     @Test
+    @DisplayName("при получении возвращается новый экземпляр")
     void getCoordinatesIsConcurrencySafe() {
         Vector vector1 = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
@@ -97,6 +104,7 @@ class PolarVector2DTest {
     }
 
     @Test
+    @DisplayName("можно получить размерность")
     void getDimension() {
         Vector vector = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
@@ -107,6 +115,7 @@ class PolarVector2DTest {
     }
 
     @Test
+    @DisplayName("можно сложить длины")
     void scalarAdd() {
         Vector vector1 = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
@@ -121,6 +130,7 @@ class PolarVector2DTest {
     }
 
     @Test
+    @DisplayName("можно сравнить координаты")
     void testEquals() {
         assertEquals(
                 Vector2DBuilder.builder()

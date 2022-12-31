@@ -1,5 +1,6 @@
 package ru.otus.architect.vector;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,6 +15,7 @@ class VectorImplTest {
     private final static List<Integer> BAD_TEST_COORDINATES = List.of(-5, 2, 0);
 
     @Test
+    @DisplayName("координаты можно сложить")
     void add() {
         Vector vector1 = new VectorImpl(TEST_COORDINATES_1);
         Vector vector2 = new VectorImpl(TEST_COORDINATES_2);
@@ -26,6 +28,7 @@ class VectorImplTest {
     }
 
     @Test
+    @DisplayName("при сложении вух векторов их размерность должна совпадать")
     void addBadDimension() {
         Vector vector1 = new VectorImpl(TEST_COORDINATES_1);
         Vector badVector = new VectorImpl(BAD_TEST_COORDINATES);
@@ -34,6 +37,7 @@ class VectorImplTest {
     }
 
     @Test
+    @DisplayName("координаты можно получить")
     void getCoordinates() {
         Vector vector1 = new VectorImpl(TEST_COORDINATES_1);
 
@@ -45,6 +49,7 @@ class VectorImplTest {
     }
 
     @Test
+    @DisplayName("при получении возвращается новый экземпляр")
     void getCoordinatesIsConcurrencySafe() {
         Vector vector1 = new VectorImpl(TEST_COORDINATES_1);
 
@@ -60,6 +65,7 @@ class VectorImplTest {
     }
 
     @Test
+    @DisplayName("можно получить размерность")
     void getDimension() {
         Vector vector1 = new VectorImpl(TEST_COORDINATES_1);
 
@@ -67,6 +73,7 @@ class VectorImplTest {
     }
 
     @Test
+    @DisplayName("можно сложить длины")
     void scalarAdd() {
         Vector vector1 = new VectorImpl(TEST_COORDINATES_1);
 

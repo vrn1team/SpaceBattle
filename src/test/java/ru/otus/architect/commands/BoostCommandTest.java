@@ -1,6 +1,7 @@
 package ru.otus.architect.commands;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -27,6 +28,7 @@ class BoostCommandTest {
     private Accelerator accelerator;
 
     @Test
+    @DisplayName("можно выполнить")
     void execute() {
         when(accelerator.getVelocity()).thenReturn(TEST_VELOCITY);
         when(accelerator.getAcceleration()).thenReturn(TEST_ACCELERATION);
@@ -38,6 +40,7 @@ class BoostCommandTest {
     }
 
     @Test
+    @DisplayName("можно выполнить с нулевым ускорением")
     void zeroBoost() {
         when(accelerator.getVelocity()).thenReturn(TEST_VELOCITY);
         when(accelerator.getAcceleration()).thenReturn(0.0);
@@ -49,6 +52,7 @@ class BoostCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя ускорить недвижимое")
     void boostImmobile() {
         doThrow(new RuntimeException()).when(accelerator).setVelocity(any());
         when(accelerator.getVelocity()).thenReturn(TEST_VELOCITY);
@@ -60,6 +64,7 @@ class BoostCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя ускорить без скорости")
     void boostNoVelocity() {
         doThrow(new RuntimeException()).when(accelerator).getVelocity();
 
@@ -69,6 +74,7 @@ class BoostCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя ускорить без ускорения")
     void boostNoAcceleration() {
         doThrow(new RuntimeException()).when(accelerator).getAcceleration();
 

@@ -1,5 +1,6 @@
 package ru.otus.architect.vector;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,6 +15,7 @@ class Vector2DBuilderTest {
     private final static List<Integer> TEST_Y_COORDINATES = List.of(0, 1);
 
     @Test
+    @DisplayName("можно создать по значениям координат")
     void createByCoordinates() {
         Vector vector = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
@@ -37,6 +39,7 @@ class Vector2DBuilderTest {
     }
 
     @Test
+    @DisplayName("можно создать с нулевыми координатами")
     void createByZeroCoordinates() {
         Vector vector = Vector2DBuilder.builder()
                 .x(TEST_ZERO_COORDINATES.get(0))
@@ -50,6 +53,7 @@ class Vector2DBuilderTest {
     }
 
     @Test
+    @DisplayName("можно создать с нулевым x")
     void createByXZeroCoordinates() {
         Vector vector = Vector2DBuilder.builder()
                 .x(TEST_X_COORDINATES.get(0))
@@ -63,6 +67,7 @@ class Vector2DBuilderTest {
     }
 
     @Test
+    @DisplayName("можно создать с нулевым y")
     void createByYZeroCoordinates() {
         Vector vector = Vector2DBuilder.builder()
                 .x(TEST_Y_COORDINATES.get(0))

@@ -1,6 +1,7 @@
 package ru.otus.architect.commands;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -42,6 +43,7 @@ class MoveCommandTest {
     }
 
     @Test
+    @DisplayName("можно выполнить")
     void execute() {
         Command command = new MoveCommand(mobile);
         command.execute();
@@ -50,6 +52,7 @@ class MoveCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя двигать недвижимое")
     void moveImmobile() {
         doThrow(new RuntimeException())
                 .when(mobile).setPosition(any());
@@ -59,6 +62,7 @@ class MoveCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя двигать без скорости")
     void badVelocity() {
         when(mobile.getVelocity())
                 .thenReturn(BAD_COORDINATES);
@@ -69,6 +73,7 @@ class MoveCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя двигать без координат")
     void badCoordinates() {
         when(mobile.getPosition())
                 .thenReturn(BAD_COORDINATES);

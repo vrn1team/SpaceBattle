@@ -1,5 +1,6 @@
 package ru.otus.architect.angle;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,11 +13,14 @@ class AngleImplTest {
     private final static int BAD_DISCRETE_COUNT = 0;
 
     @Test
+    @DisplayName("дробь с нулевым или отрицательным знаменателем не допустимы для описания угла")
     void createWithBadDiscreteAngleCount() {
         assertThrows(RuntimeException.class, () -> new AngleImpl(0, BAD_DISCRETE_COUNT));
+        assertThrows(RuntimeException.class, () -> new AngleImpl(0, - DISCRETE_COUNT));
     }
 
     @Test
+    @DisplayName("можно получить угол в радианах")
     void getAngle() {
         Angle angle = new AngleImpl(DISCRETE_COUNT/2, DISCRETE_COUNT);
 
@@ -24,6 +28,7 @@ class AngleImplTest {
     }
 
     @Test
+    @DisplayName("можно сложить два угла")
     void add() {
         Angle angle1 = new AngleImpl(DISCRETE_COUNT/4, DISCRETE_COUNT);
         Angle angle2 = new AngleImpl(DISCRETE_COUNT/2, DISCRETE_COUNT);

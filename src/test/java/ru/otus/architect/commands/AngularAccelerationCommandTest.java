@@ -1,5 +1,6 @@
 package ru.otus.architect.commands;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -23,6 +24,7 @@ class AngularAccelerationCommandTest {
     private AngularAccelerator angularAccelerator;
 
     @Test
+    @DisplayName("можно выполнить")
     void execute() {
         when(angularAccelerator.getAngularVelocity())
                 .thenReturn(TEST_ANGLE_1);
@@ -36,6 +38,7 @@ class AngularAccelerationCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя ускорить не зная текущей угловой скорости")
     void badAngularVelocity() {
         doThrow(new RuntimeException())
                 .when(angularAccelerator).getAngularVelocity();
@@ -46,6 +49,7 @@ class AngularAccelerationCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя ускорить не зная ускорения")
     void badAngularAcceleration() {
         when(angularAccelerator.getAngularVelocity())
                 .thenReturn(TEST_ANGLE_1);
@@ -58,6 +62,7 @@ class AngularAccelerationCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя ускорить не ускоряемое")
     void accelerateNoAngularAccelerator() {
         when(angularAccelerator.getAngularVelocity())
                 .thenReturn(TEST_ANGLE_1);

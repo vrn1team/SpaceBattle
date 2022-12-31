@@ -1,5 +1,6 @@
 package ru.otus.architect.commands;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -21,6 +22,7 @@ class RotateCommandTest {
     private Rotation rotation;
 
     @Test
+    @DisplayName("можно выполнить")
     void execute() {
         when(rotation.getAngle())
                 .thenReturn(TEST_ANGLE_1);
@@ -34,6 +36,7 @@ class RotateCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя повернуть не зная текущий угол")
     void badAngle () {
         doThrow(new RuntimeException())
                 .when(rotation).getAngle();
@@ -44,6 +47,7 @@ class RotateCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя повернуть не зная угловое ускорение")
     void badAngularVelocity() {
         when(rotation.getAngle())
                 .thenReturn(TEST_ANGLE_1);
@@ -56,6 +60,7 @@ class RotateCommandTest {
     }
 
     @Test
+    @DisplayName("нельзя повернуть не вращаемое")
     void rotateNotRotatable() {
         when(rotation.getAngle())
                 .thenReturn(TEST_ANGLE_1);
