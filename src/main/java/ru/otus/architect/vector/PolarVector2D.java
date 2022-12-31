@@ -1,5 +1,7 @@
 package ru.otus.architect.vector;
 
+import ru.otus.architect.angle.Angle;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,18 +9,13 @@ public class PolarVector2D implements Vector {
 
     private final static double DELTA = 0.05;
     private final static int DIMENSION = 2;
-    private final int discreteAngleCount;
     private final double radial;
-    private final int corner;
+    private final Angle corner;
 
-    public PolarVector2D(double radial, int corner, int discreteAngleCount) {
-        if (discreteAngleCount <= 0 ) {
-            throw new VectorsInitiationException("Bad discreteAngleCount");
-        }
+    public PolarVector2D(double radial, Angle corner) {
         if (radial <  - DELTA ) {
             throw new VectorsInitiationException("Bad radial");
         }
-        this.discreteAngleCount = discreteAngleCount;
         this.radial = radial;
         this.corner = corner;
     }
@@ -29,26 +26,22 @@ public class PolarVector2D implements Vector {
             throw new VectorsDimensionException();
         }
         List<Integer> result = addCoordinates(vector.getCoordinates());
-        return Vector2DBuilder.builder(discreteAngleCount).x(result.get(0)).y(result.get(1)).build();
+        return Vector2DBuilder.builder().x(result.get(0)).y(result.get(1)).build();
     }
 
     @Override
     public Vector scalarAdd(double acceleration) {
-        return new PolarVector2D(radial + acceleration, corner, discreteAngleCount);
+        return new PolarVector2D(radial + acceleration, corner);
     }
 
     @Override
     public List<Integer> getCoordinates() {
-        return List.of((int) Math.round(radial*Math.cos(getAngle())), (int) Math.round(radial*Math.sin(getAngle())));
+        return List.of((int) Math.round(radial*Math.cos(corner.getAngle())), (int) Math.round(radial*Math.sin(corner.getAngle())));
     }
 
     @Override
     public int getDimension() {
         return DIMENSION;
-    }
-
-    private double getAngle() {
-        return (Math.PI*corner)/discreteAngleCount;
     }
 
     private List<Integer> addCoordinates(List<Integer> velocity) {

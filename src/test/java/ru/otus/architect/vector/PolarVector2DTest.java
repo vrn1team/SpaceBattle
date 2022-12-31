@@ -1,6 +1,8 @@
 package ru.otus.architect.vector;
 
 import org.junit.jupiter.api.Test;
+import ru.otus.architect.angle.Angle;
+import ru.otus.architect.angle.AngleImpl;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ class PolarVector2DTest {
     private final static int TEST_Y = 5;
     private final static double TEST_CORNER = 13;
     private final static double BAD_CORNER = -0.5;
-    private final static int TEST_ANGLE = 23;
+    private final static Angle TEST_ANGLE = new AngleImpl(23, DISCRETE_COUNT);
     private final static List<Integer> TEST_COORDINATES_1 = List.of(12, 5);
     private final static List<Integer> TEST_COORDINATES_2 = List.of(-5, 2);
     private final static List<Integer> TEST_SUM_RESULT = List.of(7, 7);
@@ -21,7 +23,7 @@ class PolarVector2DTest {
 
     @Test
     void createByPolarCoordinates() {
-        Vector vector = new PolarVector2D(TEST_CORNER, TEST_ANGLE, DISCRETE_COUNT);
+        Vector vector = new PolarVector2D(TEST_CORNER, TEST_ANGLE);
 
         List<Integer> result = vector.getCoordinates();
 
@@ -32,17 +34,17 @@ class PolarVector2DTest {
 
     @Test
     void createByPolarCoordinatesWithBadRadial() {
-        assertThrows(VectorsInitiationException.class, () -> new PolarVector2D(BAD_CORNER, TEST_ANGLE, DISCRETE_COUNT));
+        assertThrows(VectorsInitiationException.class, () -> new PolarVector2D(BAD_CORNER, TEST_ANGLE));
     }
 
     @Test
     void createByPolarCoordinatesWithBadDiscreteAngleCount() {
-        assertThrows(VectorsInitiationException.class, () -> new PolarVector2D(BAD_CORNER, TEST_ANGLE, BAD_DISCRETE_COUNT));
+        assertThrows(RuntimeException.class, () -> new PolarVector2D(BAD_CORNER, new AngleImpl(0, BAD_DISCRETE_COUNT)));
     }
 
     @Test
     void addBadDimension() {
-        Vector vector1 = Vector2DBuilder.builder(DISCRETE_COUNT).x(TEST_X).y(TEST_Y).build();
+        Vector vector1 = Vector2DBuilder.builder().x(TEST_X).y(TEST_Y).build();
         Vector badVector = new VectorImpl(BAD_TEST_COORDINATES);
 
         assertThrows(VectorsDimensionException.class, () -> vector1.vectorAdd(badVector));
@@ -50,11 +52,11 @@ class PolarVector2DTest {
 
     @Test
     void add() {
-        Vector vector1 = Vector2DBuilder.builder(DISCRETE_COUNT)
+        Vector vector1 = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
                 .y(TEST_COORDINATES_1.get(1))
                 .build();
-        Vector vector2 = Vector2DBuilder.builder(DISCRETE_COUNT)
+        Vector vector2 = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_2.get(0))
                 .y(TEST_COORDINATES_2.get(1))
                 .build();
@@ -68,7 +70,7 @@ class PolarVector2DTest {
 
     @Test
     void getCoordinates() {
-        Vector vector = Vector2DBuilder.builder(DISCRETE_COUNT)
+        Vector vector = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
                 .y(TEST_COORDINATES_1.get(1))
                 .build();
@@ -82,7 +84,7 @@ class PolarVector2DTest {
 
     @Test
     void getCoordinatesIsConcurrencySafe() {
-        Vector vector1 = Vector2DBuilder.builder(DISCRETE_COUNT)
+        Vector vector1 = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
                 .y(TEST_COORDINATES_1.get(1))
                 .build();
@@ -96,7 +98,7 @@ class PolarVector2DTest {
 
     @Test
     void getDimension() {
-        Vector vector = Vector2DBuilder.builder(DISCRETE_COUNT)
+        Vector vector = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
                 .y(TEST_COORDINATES_1.get(1))
                 .build();
@@ -106,7 +108,7 @@ class PolarVector2DTest {
 
     @Test
     void scalarAdd() {
-        Vector vector1 = Vector2DBuilder.builder(DISCRETE_COUNT)
+        Vector vector1 = Vector2DBuilder.builder()
                 .x(TEST_COORDINATES_1.get(0))
                 .y(TEST_COORDINATES_1.get(1))
                 .build();
@@ -121,21 +123,21 @@ class PolarVector2DTest {
     @Test
     void testEquals() {
         assertEquals(
-                Vector2DBuilder.builder(DISCRETE_COUNT)
+                Vector2DBuilder.builder()
                         .x(TEST_COORDINATES_1.get(0))
                         .y(TEST_COORDINATES_1.get(1))
                         .build(),
-                Vector2DBuilder.builder(DISCRETE_COUNT)
+                Vector2DBuilder.builder()
                         .x(TEST_COORDINATES_1.get(0))
                         .y(TEST_COORDINATES_1.get(1))
                         .build());
 
         assertNotEquals(
-                Vector2DBuilder.builder(DISCRETE_COUNT)
+                Vector2DBuilder.builder()
                         .x(TEST_COORDINATES_1.get(0))
                         .y(TEST_COORDINATES_1.get(1))
                         .build(),
-                Vector2DBuilder.builder(DISCRETE_COUNT)
+                Vector2DBuilder.builder()
                         .x(TEST_COORDINATES_2.get(0))
                         .y(TEST_COORDINATES_2.get(1))
                         .build());

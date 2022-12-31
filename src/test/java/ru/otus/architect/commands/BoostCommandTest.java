@@ -15,11 +15,11 @@ import static org.mockito.Mockito.*;
 class BoostCommandTest {
     private final static int DISCRETE_COUNT = 180;
     private final static double TEST_ACCELERATION = 13;
-    private final static Vector TEST_VELOCITY = Vector2DBuilder.builder(DISCRETE_COUNT)
+    private final static Vector TEST_VELOCITY = Vector2DBuilder.builder()
             .x(12)
             .y(5)
             .build();
-    private final static Vector RESULT_VELOCITY = Vector2DBuilder.builder(DISCRETE_COUNT)
+    private final static Vector RESULT_VELOCITY = Vector2DBuilder.builder()
             .x(24)
             .y(10)
             .build();
