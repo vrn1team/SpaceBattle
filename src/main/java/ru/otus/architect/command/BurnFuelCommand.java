@@ -1,22 +1,22 @@
 package ru.otus.architect.command;
 
-import ru.otus.architect.fuel.IFuelConsumer;
+import ru.otus.architect.fuel.FuelConsumer;
 
 public class BurnFuelCommand implements Command {
 
-    private final IFuelConsumer burnable;
+    private final FuelConsumer fuelConsumer;
 
-    public BurnFuelCommand(IFuelConsumer burnable) {
-        this.burnable = burnable;
+    public BurnFuelCommand(FuelConsumer fuelConsumer) {
+        this.fuelConsumer = fuelConsumer;
     }
 
 
     @Override
     public void execute() {
-        int newFuelLvl = burnable.getFuelLvl() - burnable.getConsumption();
+        int newFuelLvl = fuelConsumer.getFuelLevel() - fuelConsumer.getConsumption();
         if (newFuelLvl < 0) {
             throw new RuntimeException("Fuel level too low");
         }
-        burnable.setFuelLvl(newFuelLvl);
+        fuelConsumer.setFuelLvl(newFuelLvl);
     }
 }

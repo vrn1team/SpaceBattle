@@ -1,8 +1,8 @@
 package ru.otus.architect.fuel;
 
-public interface IFuelConsumer {
+public interface FuelConsumer {
 
-    int getFuelLvl();
+    int getFuelLevel();
 
     int getConsumption();
 

@@ -14,13 +14,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.architect.command.BurnFuelCommand;
-import ru.otus.architect.fuel.IFuelConsumer;
+import ru.otus.architect.fuel.FuelConsumer;
 
 @ExtendWith(MockitoExtension.class)
 class FuelBurnerTest {
 
     @Mock
-    private IFuelConsumer burnable;
+    private FuelConsumer burnable;
     public BurnFuelCommand fuelBurner;
     private final int startFuel = 10;
 
@@ -28,7 +28,7 @@ class FuelBurnerTest {
 
     @BeforeEach
     void init() {
-        when(burnable.getFuelLvl()).thenReturn(startFuel);
+        when(burnable.getFuelLevel()).thenReturn(startFuel);
         when(burnable.getConsumption()).thenReturn(consumption);
         fuelBurner = new BurnFuelCommand(burnable);
     }
@@ -47,13 +47,13 @@ class FuelBurnerTest {
     @DisplayName("Случай, когда расходуем топливо \"в ноль\"")
     void zeroFuelTest() {
         int consumption = burnable.getConsumption();
-        when(burnable.getFuelLvl()).thenReturn(consumption);
+        when(burnable.getFuelLevel()).thenReturn(consumption);
 
         assertDoesNotThrow(() -> fuelBurner.execute());
     }
 
     @Test
-    @DisplayName("Пытаемся израсходовать больше топлива, чем есть")
+    @DisplayName("Ошибка, когда пытаемся израсходовать больше топлива, чем есть")
     void negativedFuelTest() {
         when(burnable.getConsumption()).thenReturn(1000);
         assertThrows(Exception.class, () -> fuelBurner.execute());
