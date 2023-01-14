@@ -6,12 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 import ru.otus.architect.command.Command;
 import ru.otus.architect.exceptionHandling.handlers.CommandExceptionHandler;
+import ru.otus.architect.exceptionHandling.handlers.ExceptionLoggingHandler;
+
 
 /**
  * Хендлер, который реализует решение исключений сначала происходит поиск хэнделра по конкретной команде и конкретному
  * исключению
  * Если ничего не найдено - идет поиск хэндлера для всех исключений по данной команде
  * Далее идет поиск хэндлера, который обрабатывает исключение вне зависимости от типа команды
+ * Если ничего не найдено - берется хэндлер для исключения NoCorrectHandlerException, стандартное поведение - простое логирование
  */
 public class ExceptionHandlerServiceImpl implements ExceptionHandlerService {
 
@@ -20,6 +23,9 @@ public class ExceptionHandlerServiceImpl implements ExceptionHandlerService {
     public ExceptionHandlerServiceImpl() {
         this.handlerRepository = new HashMap<>();
         handlerRepository.put(RuleForPreciseException.class, new HashMap<>());
+        //регистрируем обработчик на случай неизвестной ошибки
+        registerExceptionHandlingRule(new NoCorrectHandlerException("qwe"),
+                new ExceptionLoggingHandler());
     }
 
 
@@ -49,7 +55,9 @@ public class ExceptionHandlerServiceImpl implements ExceptionHandlerService {
             return (handlerRepository.get(RuleForPreciseException.class).get(exceptionClass));
         }
         //если и общих правил нет - наши полномочия все
-        throw new NoCorrectHandlerException("Can't find handler for exception " + exceptionClass.getName());
+        return getHandlerCommand(command,
+                new NoCorrectHandlerException("Can't find handler for exception " + exceptionClass.getName()
+                + ". Initial exception message: " + exception.getMessage()));
     }
 
     @Override
