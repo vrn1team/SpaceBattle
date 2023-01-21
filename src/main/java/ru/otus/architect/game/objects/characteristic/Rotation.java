@@ -1,6 +1,6 @@
-package ru.otus.architect.game.objects;
+package ru.otus.architect.game.objects.characteristic;
 
-import ru.otus.architect.angle.Angle;
+import ru.otus.architect.game.objects.dimension.angle.Angle;
 
 public interface Rotation {
 

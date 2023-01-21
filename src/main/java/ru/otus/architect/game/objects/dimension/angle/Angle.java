@@ -1,4 +1,4 @@
-package ru.otus.architect.angle;
+package ru.otus.architect.game.objects.dimension.angle;
 
 public interface Angle {
 

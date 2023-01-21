@@ -1,4 +1,4 @@
-package ru.otus.architect.fuel;
+package ru.otus.architect.game.objects.characteristic;
 
 public interface FuelConsumer {
 

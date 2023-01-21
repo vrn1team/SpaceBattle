@@ -1,6 +1,6 @@
-package ru.otus.architect.game.objects;
+package ru.otus.architect.game.objects.characteristic;
 
-import ru.otus.architect.vector.Vector;
+import ru.otus.architect.game.objects.dimension.vector.Vector;
 
 public interface Accelerator {
 

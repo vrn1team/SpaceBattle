@@ -1,4 +1,4 @@
-package ru.otus.architect.angle;
+package ru.otus.architect.game.objects.dimension.angle;
 
 public class AngleImpl implements Angle {
     private final static double DELTA = 0.0005;

@@ -1,4 +1,4 @@
-package ru.otus.architect.vector;
+package ru.otus.architect.game.objects.dimension.vector;
 
 import java.util.ArrayList;
 import java.util.List;

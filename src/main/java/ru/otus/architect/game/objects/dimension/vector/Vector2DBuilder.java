@@ -1,6 +1,6 @@
-package ru.otus.architect.vector;
+package ru.otus.architect.game.objects.dimension.vector;
 
-import ru.otus.architect.angle.AngleImpl;
+import ru.otus.architect.game.objects.dimension.angle.AngleImpl;
 
 public class Vector2DBuilder {
     private final int DISCRETE_ANGLE_COUNT = 180;

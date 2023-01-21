@@ -4,6 +4,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import ru.otus.architect.game.objects.dimension.vector.Vector;
+import ru.otus.architect.game.objects.dimension.vector.VectorImpl;
+import ru.otus.architect.game.objects.dimension.vector.VectorsDimensionException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

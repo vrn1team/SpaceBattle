@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.otus.architect.game.objects.Accelerator;
-import ru.otus.architect.vector.Vector;
-import ru.otus.architect.vector.Vector2DBuilder;
+import ru.otus.architect.game.objects.characteristic.Accelerator;
+import ru.otus.architect.game.objects.dimension.vector.Vector;
+import ru.otus.architect.game.objects.dimension.vector.Vector2DBuilder;
 
 import static org.mockito.Mockito.*;
 

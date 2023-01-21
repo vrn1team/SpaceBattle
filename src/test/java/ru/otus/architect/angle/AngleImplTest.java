@@ -2,6 +2,8 @@ package ru.otus.architect.angle;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.otus.architect.game.objects.dimension.angle.Angle;
+import ru.otus.architect.game.objects.dimension.angle.AngleImpl;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;

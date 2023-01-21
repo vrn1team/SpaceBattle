@@ -1,4 +1,4 @@
-package ru.otus.architect.server.fuel;
+package ru.otus.architect.commands;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -13,8 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.otus.architect.command.BurnFuelCommand;
-import ru.otus.architect.fuel.FuelConsumer;
+import ru.otus.architect.game.objects.characteristic.FuelConsumer;
 
 @ExtendWith(MockitoExtension.class)
 class FuelBurnerTest {

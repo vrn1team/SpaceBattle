@@ -1,6 +1,6 @@
-package ru.otus.architect.command;
+package ru.otus.architect.commands;
 
-import ru.otus.architect.fuel.FuelConsumer;
+import ru.otus.architect.game.objects.characteristic.FuelConsumer;
 
 public class BurnFuelCommand implements Command {
 

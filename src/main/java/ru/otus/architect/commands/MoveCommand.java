@@ -1,6 +1,6 @@
 package ru.otus.architect.commands;
 
-import ru.otus.architect.game.objects.Mobile;
+import ru.otus.architect.game.objects.characteristic.Mobile;
 
 public class MoveCommand implements Command {
 

@@ -1,6 +1,6 @@
 package ru.otus.architect.commands;
 
-import ru.otus.architect.game.objects.Accelerator;
+import ru.otus.architect.game.objects.characteristic.Accelerator;
 
 public class BoostCommand implements Command {
 

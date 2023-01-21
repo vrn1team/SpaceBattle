@@ -1,6 +1,6 @@
 package ru.otus.architect.commands;
 
-import ru.otus.architect.game.objects.AngularAccelerator;
+import ru.otus.architect.game.objects.characteristic.AngularAccelerator;
 
 public class AngularAccelerationCommand implements Command{
 
