@@ -1,5 +1,6 @@
 package ru.otus.architect.commands;
 
+
 import ru.otus.architect.transforms.Movable;
 
 public class MoveCommand implements Command {
