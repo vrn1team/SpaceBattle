@@ -1,6 +1,6 @@
-package ru.otus.architect.transforms;
+package ru.otus.architect.game.objects.characteristic;
 
-import ru.otus.architect.base.Coordinates;
+import ru.otus.architect.game.objects.dimension.Coordinates;
 
 public interface Movable {
     Coordinates getPosition();

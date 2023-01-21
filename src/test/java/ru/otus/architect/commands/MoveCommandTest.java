@@ -2,7 +2,7 @@ package ru.otus.architect.commands;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.architect.base.Coordinates;
+import ru.otus.architect.game.objects.dimension.Coordinates;
 import ru.otus.architect.exceptions.ReadPositionException;
 import ru.otus.architect.exceptions.ReadVelocityException;
 import ru.otus.architect.exceptions.WritePositionException;

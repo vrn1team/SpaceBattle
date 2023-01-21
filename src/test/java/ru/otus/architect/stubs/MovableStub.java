@@ -1,7 +1,7 @@
 package ru.otus.architect.stubs;
 
-import ru.otus.architect.base.Coordinates;
-import ru.otus.architect.transforms.Movable;
+import ru.otus.architect.game.objects.dimension.Coordinates;
+import ru.otus.architect.game.objects.characteristic.Movable;
 
 public class MovableStub implements Movable {
 

@@ -1,4 +1,4 @@
-package ru.otus.architect.base;
+package ru.otus.architect.game.objects.dimension;
 
 import java.util.Objects;
 

@@ -1,7 +1,7 @@
 package ru.otus.architect.commands;
 
 
-import ru.otus.architect.transforms.Movable;
+import ru.otus.architect.game.objects.characteristic.Movable;
 
 public class MoveCommand implements Command {
     private Movable m;
