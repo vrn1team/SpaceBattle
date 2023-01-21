@@ -1,86 +1,66 @@
 package ru.otus.architect.commands;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import ru.otus.architect.game.objects.characteristic.Mobile;
-import ru.otus.architect.game.objects.dimension.vector.Vector;
-import ru.otus.architect.game.objects.dimension.vector.Vector2DBuilder;
-import ru.otus.architect.game.objects.dimension.vector.VectorImpl;
+import ru.otus.architect.base.Coordinates;
+import ru.otus.architect.exceptions.ReadPositionException;
+import ru.otus.architect.exceptions.ReadVelocityException;
+import ru.otus.architect.exceptions.WritePositionException;
+import ru.otus.architect.stubs.DoesNotAllowReadPositionStub;
+import ru.otus.architect.stubs.DoesNotAllowReadVelocityStub;
+import ru.otus.architect.stubs.DoesNotAllowWritePositionStub;
+import ru.otus.architect.stubs.MovableStub;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
 class MoveCommandTest {
-    private final static Vector TEST_COORDINATES_1 = Vector2DBuilder.builder()
-            .x(12)
-            .y(5)
-            .build();
-    private final static Vector TEST_COORDINATES_2 = Vector2DBuilder.builder()
-            .x(-7)
-            .y(3)
-            .build();
 
-    private final static Vector BAD_COORDINATES = new VectorImpl(-5, 2, 0);
-
-    private final static Vector TEST_SUM_RESULT = Vector2DBuilder.builder()
-            .x(5)
-            .y(8)
-            .build();
-    @Mock
-    private Mobile mobile;
-
-    @BeforeEach
-    void setUp() {
-        when(mobile.getPosition())
-                .thenReturn(TEST_COORDINATES_1);
-        when(mobile.getVelocity())
-                .thenReturn(TEST_COORDINATES_2);
+    @Test
+    @DisplayName("Объект с координатами (12,5) и скоростью (-7, 3) перемещается одной командой на позицию (5, 8)")
+    void testMoveFromOnePointToAnother() {
+        // arrange
+        var stub = new MovableStub();
+        stub.setPosition(new Coordinates(12, 5));
+        stub.setVelocity(new Coordinates(-7, 3));
+        MoveCommand cut = new MoveCommand(stub);
+        // act
+        cut.execute();
+        // assert
+        assertEquals(stub.getPosition().getX(), 5);
+        assertEquals(stub.getPosition().getY(), 8);
     }
 
     @Test
-    @DisplayName("можно выполнить")
-    void execute() {
-        Command command = new MoveCommand(mobile);
-        command.execute();
-
-        verify(mobile, times(1)).setPosition(TEST_SUM_RESULT);
+    @DisplayName("Попытка сдвинуть объект, у которого невозможно прочитать положение в пространстве, приводит к ошибке")
+    void testThatMovableAllowsReadItsPosition() {
+        var stub = new DoesNotAllowReadPositionStub();
+        stub.setPosition(new Coordinates(12, 5));
+        stub.setVelocity(new Coordinates(-7, 3));
+        MoveCommand cut = new MoveCommand(stub);
+        // act/assert
+        assertThrows(ReadPositionException.class, cut::execute);
     }
 
     @Test
-    @DisplayName("нельзя двигать недвижимое")
-    void moveImmobile() {
-        doThrow(new RuntimeException())
-                .when(mobile).setPosition(any());
-
-        Command command = new MoveCommand(mobile);
-        assertThrows(MoveCommandException.class, command::execute);
+    @DisplayName("Попытка сдвинуть объект, у которого невозможно прочитать значение мгновенной скорости, приводит к ошибке")
+    void testThatMovableAllowsReadItsVelocity() {
+        var stub = new DoesNotAllowReadVelocityStub();
+        stub.setPosition(new Coordinates(12, 5));
+        stub.setVelocity(new Coordinates(-7, 3));
+        MoveCommand cut = new MoveCommand(stub);
+        // act/assert
+        assertThrows(ReadVelocityException.class, cut::execute);
     }
 
     @Test
-    @DisplayName("нельзя двигать без скорости")
-    void badVelocity() {
-        when(mobile.getVelocity())
-                .thenReturn(BAD_COORDINATES);
-
-        Command command = new MoveCommand(mobile);
-
-        assertThrows(MoveCommandException.class, command::execute);
+    @DisplayName("Попытка сдвинуть объект, у которого невозможно изменить положение в пространстве, приводит к ошибке")
+    void testThatMovableMovesInSpace() {
+        var stub = new DoesNotAllowWritePositionStub();
+        // arrange
+        stub.setVelocity(new Coordinates(-7, 3));
+        MoveCommand cut = new MoveCommand(stub);
+        // act/assert
+        assertThrows(WritePositionException.class, cut::execute);
     }
-
-    @Test
-    @DisplayName("нельзя двигать без координат")
-    void badCoordinates() {
-        when(mobile.getPosition())
-                .thenReturn(BAD_COORDINATES);
-
-        Command command = new MoveCommand(mobile);
-
-        assertThrows(MoveCommandException.class, command::execute);
-    }
-
 }
