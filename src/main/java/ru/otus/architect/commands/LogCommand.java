@@ -1,11 +1,9 @@
 package ru.otus.architect.commands;
 
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Logger;
 
 public class LogCommand implements Command {
-    private final String name = "Commands.LogCommand";
     private final Logger logger;
     private final Exception exception;
 
@@ -16,11 +14,6 @@ public class LogCommand implements Command {
 
     @Override
     public void execute() {
-        logger.log(Level.ERROR, exception.getMessage());
-    }
-
-    @Override
-    public String getName() {
-        return name;
+        logger.log(logger.getLevel(), exception.getMessage());
     }
 }

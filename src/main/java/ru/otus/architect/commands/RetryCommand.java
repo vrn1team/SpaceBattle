@@ -1,20 +1,18 @@
 package ru.otus.architect.commands;
 
-public class RetryCommand implements Command {
-    private final String name = "Commands.RetryCommand";
-    private final Command command;
+import java.util.Queue;
 
-    public RetryCommand(Command command) {
+public class RetryCommand implements Command {
+    private final Command command;
+    private final Queue<Command> commandQueue;
+
+    public RetryCommand(Command command, Queue<Command> commandQueue) {
         this.command = command;
+        this.commandQueue = commandQueue;
     }
 
     @Override
     public void execute() {
-        command.execute();
-    }
-
-    @Override
-    public String getName() {
-        return name;
+        commandQueue.offer(command);
     }
 }
