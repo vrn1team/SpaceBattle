@@ -1,4 +1,4 @@
-package ru.otus.architect.commands;
+package ru.otus.architect.commands.baseCommands;
 
 public class AngularAccelerationCommandException extends RuntimeException {
 
