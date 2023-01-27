@@ -1,5 +1,6 @@
 package ru.otus.architect.commands;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,34 +12,37 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ChangeableCommandImplTest {
     private final static String TEST_MESSAGE_OK = "Ok";
     private final static String TEST_MESSAGE_FAILED = "FAILED";
-    private final static List<String> LOG = new ArrayList<>();
+    private List<String> log;
 
-
+    @BeforeEach
+    void setUp() {
+        log = new ArrayList<>();
+    }
 
     @Test
     @DisplayName("После изменения команды будут выполнены новые действия")
     void changeCommand() {
-        ChangeableCommand command = new ChangeableCommandImpl(() -> LOG.add(TEST_MESSAGE_FAILED));
+        ChangeableCommand command = new ChangeableCommandImpl(() -> log.add(TEST_MESSAGE_FAILED));
 
-        command.changeCommand(() -> LOG.add(TEST_MESSAGE_OK));
+        command.changeCommand(() -> log.add(TEST_MESSAGE_OK));
 
         command.execute();
 
-        assertEquals(1, LOG.size());
+        assertEquals(1, log.size());
 
-        assertEquals(TEST_MESSAGE_OK, LOG.get(0));
+        assertEquals(TEST_MESSAGE_OK, log.get(0));
     }
 
     @Test
     @DisplayName("Команда выполняется")
     void execute() {
-        ChangeableCommand command = new ChangeableCommandImpl(() -> LOG.add(TEST_MESSAGE_OK));
+        ChangeableCommand command = new ChangeableCommandImpl(() -> log.add(TEST_MESSAGE_OK));
 
         command.execute();
 
-        assertEquals(1, LOG.size());
+        assertEquals(1, log.size());
 
-        assertEquals(TEST_MESSAGE_OK, LOG.get(0));
+        assertEquals(TEST_MESSAGE_OK, log.get(0));
 
     }
 }
