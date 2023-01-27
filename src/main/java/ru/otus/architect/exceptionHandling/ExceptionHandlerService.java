@@ -13,5 +13,4 @@ public interface ExceptionHandlerService {
 
     void registerExceptionHandlingRule(Class<? extends Exception> exceptionClazz, CommandExceptionHandler exceptionHandler);
 
-    void registerHandlingRule(CommandExceptionHandler exceptionHandler);
 }
