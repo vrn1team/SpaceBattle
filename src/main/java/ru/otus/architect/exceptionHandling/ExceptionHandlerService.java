@@ -5,7 +5,7 @@ import ru.otus.architect.exceptionHandling.handlers.CommandExceptionHandler;
 
 public interface ExceptionHandlerService {
 
-    void getHandleException(Class<? extends Command> commandClazz, Class<? extends Exception> exceptionClazz);
+    void getExceptionHandler(Class<? extends Command> commandClazz, Class<? extends Exception> exceptionClazz);
 
     void registerHandlingRule(Class<? extends Command> commandClazz, Class<? extends Exception> exceptionClazz, CommandExceptionHandler exceptionHandler);
 
