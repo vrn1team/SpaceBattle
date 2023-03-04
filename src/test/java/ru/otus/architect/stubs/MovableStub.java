@@ -6,7 +6,7 @@ import ru.otus.architect.game.objects.characteristic.Movable;
 public class MovableStub implements Movable {
 
     private Coordinates position = new Coordinates(0, 0);
-    private Coordinates velocity;
+    private Coordinates velocity = new Coordinates(0, 0);
 
 
     @Override

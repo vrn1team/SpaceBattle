@@ -11,7 +11,7 @@ public class DoesNotAllowReadPositionStub implements Movable {
 
     @Override
     public Coordinates getPosition() {
-        throw new ReadPositionException();
+        throw new ReadPositionException("can't read position");
     }
 
     @Override
