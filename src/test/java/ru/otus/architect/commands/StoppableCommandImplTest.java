@@ -3,6 +3,8 @@ package ru.otus.architect.commands;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.otus.architect.commands.stoppable.StoppableCommand;
+import ru.otus.architect.commands.stoppable.StoppableCommandImpl;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
-package ru.otus.architect.commands;
+package ru.otus.architect.commands.baseCommands;
 
+import ru.otus.architect.commands.Command;
 import ru.otus.architect.game.objects.characteristic.Rotation;
 
 public class RotateCommand implements Command {
