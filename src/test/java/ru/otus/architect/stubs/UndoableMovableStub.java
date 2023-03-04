@@ -1,27 +1,28 @@
 package ru.otus.architect.stubs;
 
-import ru.otus.architect.game.objects.dimension.Coordinates;
-import ru.otus.architect.exceptions.ReadPositionException;
+import ru.otus.architect.commands.macro.Undoable;
 import ru.otus.architect.game.objects.characteristic.Movable;
+import ru.otus.architect.game.objects.dimension.Coordinates;
 
-public class DoesNotAllowReadPositionStub implements Movable {
+public class UndoableMovableStub implements Movable, Undoable {
 
     private Coordinates position = new Coordinates(0, 0);
-    private Coordinates velocity;
+    private Coordinates velocity = new Coordinates(0, 0);
+
 
     @Override
     public Coordinates getPosition() {
-        throw new ReadPositionException("can't read position");
+        return new Coordinates(position.getX(), position.getY());
     }
 
     @Override
     public void setPosition(Coordinates newPosition) {
-        this.position = position;
+        this.position = new Coordinates(newPosition.getX(), newPosition.getY());
     }
 
     @Override
     public Coordinates getVelocity() {
-        return velocity;
+        return new Coordinates(velocity.getX(), velocity.getY());
     }
 
     public void setVelocity(Coordinates velocity) {
