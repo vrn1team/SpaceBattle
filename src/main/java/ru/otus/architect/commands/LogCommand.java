@@ -1,23 +1,18 @@
 package ru.otus.architect.commands;
 
-
-import ch.qos.logback.classic.Logger;
+import java.util.logging.Logger;
 
 public class LogCommand implements Command {
-    private final static String MESSAGE = "Command {} complete with Exception {}";
-    private final Logger log;
-    private final Command command;
+    private final Logger logger;
     private final Exception exception;
 
-    public LogCommand(Logger log, Command command, Exception exception) {
-        this.log = log;
-        this.command = command;
+    public LogCommand(Exception exception, Logger logger) {
         this.exception = exception;
+        this.logger = logger;
     }
 
     @Override
     public void execute() {
-        log.info(MESSAGE, command, exception);
+        logger.log(logger.getLevel(), exception.getMessage());
     }
-
 }
