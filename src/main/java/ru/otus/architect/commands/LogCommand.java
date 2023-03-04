@@ -1,6 +1,5 @@
 package ru.otus.architect.commands;
 
-
 import java.util.logging.Logger;
 
 public class LogCommand implements Command {
