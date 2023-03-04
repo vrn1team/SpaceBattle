@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.otus.architect.commands.baseCommands.BurnFuelCommand;
 import ru.otus.architect.game.objects.characteristic.FuelConsumer;
 
 @ExtendWith(MockitoExtension.class)
