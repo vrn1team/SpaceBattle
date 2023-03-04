@@ -1,4 +1,6 @@
-package ru.otus.architect.commands;
+package ru.otus.architect.commands.stoppable;
+
+import ru.otus.architect.commands.Command;
 
 public interface ChangeableCommand extends Command {
 

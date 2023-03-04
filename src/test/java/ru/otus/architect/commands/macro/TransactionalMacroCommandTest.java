@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.architect.commands.Command;
-import ru.otus.architect.commands.MoveCommand;
+import ru.otus.architect.commands.baseCommands.MoveCommand;
 import ru.otus.architect.exceptions.CommandException;
 import ru.otus.architect.game.objects.characteristic.Movable;
 import ru.otus.architect.game.objects.dimension.Coordinates;
@@ -20,9 +20,7 @@ import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)

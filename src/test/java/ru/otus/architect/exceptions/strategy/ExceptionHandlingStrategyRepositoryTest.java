@@ -7,7 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.architect.commands.Command;
-import ru.otus.architect.commands.MoveCommand;
+import ru.otus.architect.commands.baseCommands.MoveCommand;
 import ru.otus.architect.exceptions.ExceptionHandler;
 import ru.otus.architect.exceptions.ExceptionHandlingStrategy;
 import ru.otus.architect.exceptions.handlers.LoggingExceptionHandler;

@@ -1,5 +1,11 @@
-package ru.otus.architect.commands;
+package ru.otus.architect.commands.stoppable;
 
+import ru.otus.architect.commands.Command;
+
+/*
+ * Подменяет Одну команду другой.
+ * Используется для остановки команды.
+ */
 public class ChangeableCommandImpl implements ChangeableCommand {
 
     private Command command;

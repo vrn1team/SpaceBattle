@@ -1,8 +1,8 @@
 package ru.otus.architect.commands.macro;
 
 import ru.otus.architect.commands.Command;
+import ru.otus.architect.commands.stoppable.Stoppable;
 import ru.otus.architect.game.objects.characteristic.Movable;
-import ru.otus.architect.game.objects.dimension.Coordinates;
 
 import java.util.Queue;
 

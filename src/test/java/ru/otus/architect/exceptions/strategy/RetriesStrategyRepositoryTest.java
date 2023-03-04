@@ -7,7 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.architect.commands.Command;
 import ru.otus.architect.commands.LogCommand;
-import ru.otus.architect.commands.MoveCommand;
+import ru.otus.architect.commands.baseCommands.MoveCommand;
 import ru.otus.architect.exceptions.RetriesStrategy;
 import ru.otus.architect.stubs.CommandStub;
 

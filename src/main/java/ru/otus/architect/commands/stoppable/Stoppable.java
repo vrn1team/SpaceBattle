@@ -1,4 +1,4 @@
-package ru.otus.architect.commands.macro;
+package ru.otus.architect.commands.stoppable;
 
 public interface Stoppable {
     void stop();
